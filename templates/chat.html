@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <!-- Chat Wrapper -->
+    <div class="chat-wrapper hidden" id="chat-wrapper">
+        <div class="chat-container">
+            <!-- Header -->
+            <div class="chat-header">
+                <img src="{{ url_for('static', filename='bot-avatar.png') }}" alt="Bot Avatar" class="chat-header-avatar">
+                <div class="chat-header-text">
+                    <h3>Ψηφιακός βοηθός</h3>
+                </div>
+            </div>
+            
+            <!-- Chatbox -->
+            <div class="chat-box" id="chat-box">
+                {% for entry in history %}
+                <div class="message-container {% if entry.role == 'user' %}user-message-container{% else %}bot-message-container{% endif %}">
+                    <div class="chat-message {% if entry.role == 'user' %}user-message{% else %}bot-message{% endif %}">
+                        {{ entry.message }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Input Box -->
+            <div class="chat-input">
+                <textarea id="user_input" rows="1" placeholder="Γράψε ένα μήνυμα..."></textarea>
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div>
+          {{ form.files.label }} {{ form.files() }}
+        </div>
+        <div>
+          {{ form.submit() }}
+        </div>
+    </form>
+
+    <!-- Floating Chat Button -->
+    <button id="chat-toggle-button" class="chat-toggle-button">
+        <img src="{{ url_for('static', filename='chatbox-icon.svg') }}" alt="Chatbox Icon">
+    </button>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
