@@ -3,6 +3,9 @@ Flask chatbot based on Google's Gemini API, for use as an academic assistant for
 
 This is a Flask based application, that uses Google's Gemini API to allow it's users to communicate their questions and get answers based on their respective institution's study guide. It works as an virtual academic assistant and it currently only supports txt file processing.
 
+![image](https://github.com/user-attachments/assets/7150f439-3652-4006-9a4a-66bd5b291cc3)
+
+
 ## Features
 
 - **Text file Upload**: Users can upload multiple txt files, for additional processing alongside the institution's study guide.
@@ -39,12 +42,31 @@ Follow these instructions to set up and run this project on your local machine.
     Obtain a Google API key from [here](https://aistudio.google.com) and set it in the `.env` file.
 
 
-   ```bash
+   ```python
    GOOGLE_API_KEY=your_api_key_here
    ```
+4. **Select the initial study guide txt file to train the chatbot:**
 
-4. **Run the Application:**
+   ```python
+   LOCAL_FILE_PATH = os.path.join(app.config['UPLOAD_FOLDER'], "put_your_file_here.txt")
+   ```
+	
+
+5. **Change the chatbot's welcome message from the .js file to fit your language requirement:**
+   ```python
+   chatToggleButton.addEventListener('click', () => {
+    	chatWrapper.classList.toggle('hidden');
+
+	    // Intro message
+	    if (!isChatOpened) {
+	        appendMessage('bot', 'welcome message');
+	        isChatOpened = true;
+	    }
+	});
+   ```	
+   
+6. **Run the Application:**
 
    ```bash
-   streamlit run main.py
+   python main.py
    ```

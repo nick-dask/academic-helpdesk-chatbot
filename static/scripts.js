@@ -15,7 +15,7 @@ chatToggleButton.addEventListener('click', () => {
 
     // Intro message
     if (!isChatOpened) {
-        appendMessage('bot', 'Γειά σου! Μπορείς να με ρωτήσεις οτιδήποτε θες!!');
+        appendMessage('bot', 'welcome message');
         isChatOpened = true;
     }
 });
