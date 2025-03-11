@@ -13,27 +13,29 @@ const uploadStatus = document.getElementById('upload-status');
 chatToggleButton.addEventListener('click', () => {
     chatWrapper.classList.toggle('hidden');
 
-    // Show intro message
+    // Intro message
     if (!isChatOpened) {
         appendMessage('bot', 'Γειά σου! Μπορείς να με ρωτήσεις οτιδήποτε θες!!');
         isChatOpened = true;
     }
 });
 
-// Append new message to the chat box
+// Append message to chat box
 function appendMessage(role, message) {
     const messageContainer = document.createElement('div');
     messageContainer.classList.add('message-container', role === 'user' ? 'user-message-container' : 'bot-message-container');
 
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('chat-message', role === 'user' ? 'user-message' : 'bot-message');
+    
+    messageDiv.innerHTML = message;
 
     messageContainer.appendChild(messageDiv);
     chatBox.appendChild(messageContainer);
     chatBox.scroll({ top: chatBox.scrollHeight, behavior: 'smooth' });
 }
 
-// Thinking bubble when processing
+
 function showThinkingBubble() {
     const thinkingBubble = document.createElement('div');
     thinkingBubble.classList.add('thinking-bubble');
@@ -54,7 +56,7 @@ function showThinkingBubble() {
     chatBox.scroll({ top: chatBox.scrollHeight, behavior: 'smooth' });
 }
 
-// Remove the thinking bubble once the bot responds
+
 function hideThinkingBubble() {
     const thinkingBubble = document.getElementById('thinking-bubble');
     if (thinkingBubble) {
@@ -62,20 +64,20 @@ function hideThinkingBubble() {
     }
 }
 
-// Disable input and button
+
 function disableInput() {
     userInput.disabled = true;
     sendButton.disabled = true;
 }
 
-// Enable input and button
+
 function enableInput() {
     userInput.disabled = false;
     sendButton.disabled = false;
     userInput.focus();
 }
 
-// Handle the send button click
+
 sendButton.addEventListener('click', function () {
     const userMessage = userInput.value;
 
@@ -96,24 +98,31 @@ sendButton.addEventListener('click', function () {
         })
             .then(response => response.json())
             .then(data => {
+                
                 hideThinkingBubble();
 
-                const botMessage = data[data.length - 1].message;
+                
+                const botMessage = data[data.length - 1].message; // The last message is the bot's
                 appendMessage('bot', botMessage);
 
+                
                 userInput.value = '';
 
+                
                 enableInput();
             })
             .catch(error => {
                 console.error('Error:', error);
+                
                 hideThinkingBubble();
 
+                // In case of error, re-enable input and button
                 enableInput();
             });
     }
 });
 
+// Handle "Enter" key press to send the message
 userInput.addEventListener('keydown', function (event) {
     if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();

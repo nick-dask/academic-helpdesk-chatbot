@@ -19,7 +19,7 @@ app.secret_key = 'key'
 
 app.config['SECRET_KEY'] = 'key'
 app.config['UPLOAD_FOLDER'] = r"static\data"
-LOCAL_FILE_PATH = os.path.join(app.config['UPLOAD_FOLDER'], "main_txt_file_for_initialiazation")
+LOCAL_FILE_PATH = os.path.join(app.config['UPLOAD_FOLDER'], "text_file_for_chatbot.txt")
 
 class UploadFileForm(FlaskForm):
     files = MultipleFileField("Files", render_kw={'multiple': True}, validators=[InputRequired()])
