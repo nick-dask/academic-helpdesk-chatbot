@@ -3,6 +3,8 @@ Flask chatbot based on Google's Gemini API, for use as an academic assistant for
 
 This is a Flask based application, that uses Google's Gemini API to allow it's users to communicate their questions and get answers based on their respective institution's study guide. It works as an virtual academic assistant and it currently only supports txt file processing.
 
+Below is a screenshot of what the app looks like:
+
 ![image](https://github.com/user-attachments/assets/7150f439-3652-4006-9a4a-66bd5b291cc3)
 
 
