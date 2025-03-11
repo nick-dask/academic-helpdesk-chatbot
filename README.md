@@ -28,8 +28,8 @@ Follow these instructions to set up and run this project on your local machine.
 	First, download the chatbot project from the repository:
 
  	```bash
- 	git clone https://github.com/your-username/gemini-pdf-chatbot.git 
-    cd gemini-pdf-chatbot 
+ 	git clone https://github.com/nick-dask/academic-helpdesk-chatbot.git 
+    cd academic-helpdesk-chatbot 
  	 ```
 
 2. **Install Dependencies:**

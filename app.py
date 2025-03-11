@@ -2,9 +2,9 @@ import os
 import time
 import re
 import unicodedata
-from flask import Flask, request, render_template, session, jsonify, flash
 import google.generativeai as genai
 from dotenv import load_dotenv
+from flask import Flask, request, render_template, session, jsonify, flash
 from flask_wtf import FlaskForm
 from wtforms import MultipleFileField, SubmitField
 from werkzeug.utils import secure_filename
